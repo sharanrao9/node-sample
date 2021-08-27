@@ -6,7 +6,7 @@ WORKDIR /app
 COPY ["package.json", "package-lock.json*", "./"]
 
 RUN npm install
-RUN npm-run-all test:lint test:unit
+RUN cd tests && npm-run-all test:lint test:unit
 RUN npm-run-all --parallel test:lint:*
 COPY . .
 CMD [ "node", "start" ]
