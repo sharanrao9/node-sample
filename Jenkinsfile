@@ -2,8 +2,19 @@ pipeline {
   agent any
   stages {
     stage('Unit Test Cases') {
-      steps {
-        sh 'npm test'
+      parallel {
+        stage('Unit Test Cases') {
+          steps {
+            sh 'npm test'
+          }
+        }
+
+        stage('New') {
+          steps {
+            input 'Wait'
+          }
+        }
+
       }
     }
 
